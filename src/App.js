@@ -1,17 +1,25 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import Cards from './components/Cards.jsx';
 import Nav from './components/Nav.jsx'
 import './App.css'
 import axios  from 'axios';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import About from './view/About.jsx';
 import Detail from './components/Detail.jsx';
 import Error404 from './components/Error404.jsx';
+import Form from './components/Form/Form.jsx';
+
 
 function App() {
-
+   
    const [characters,setCharacters]= useState([])
-
+   const [acces, setAccess]=useState(false)
+   
+   const EMAIL='mono-717@hotmail.com'
+   const PASSWORD='c1234567'
+   const location=useLocation() // para ocultar navbar cuando este en el path='/'
+   const navigate=useNavigate() // para re dirigir a una ruta, a /home cuando hacemos login correcto
+   
    const onSearch=(id)=>{  //para nuestro botón e input de entrada id
       if(!id) alert('Campo requerido')
       if(characters.findIndex((elem)=>elem.id===Number(id))===-1){        
@@ -44,15 +52,32 @@ function App() {
       }
    
 
+   const login=(userData)=>{  //SIMULA SEGURIDAD
+      if(userData.email===EMAIL && userData.password===PASSWORD ){
+         setAccess(true)    
+         navigate('/home') //para redirigirnos a /Home 
+      }else alert('Email o contraseña incorrecta') 
+   }  
+
+   const logOut=()=>{
+      setAccess(false)
+   }
+
+   useEffect(()=>{
+      !acces && navigate('/')
+   },[acces])
+
    return (
-      <div className='App'>
-         <Nav onSearch={onSearch} onRandom={onRandom}/>
+      <div >
+         {location.pathname!=='/' && <Nav onSearch={onSearch} onRandom={onRandom} logOut={logOut}/>}
          <Routes>
             <Route path='/home' element={<Cards onClose={onClose} characters={characters}/>}/>
             
             <Route path='/about' element={<About/>}/>            
             
             <Route path='/detail/:id' element={<Detail/>}/>
+
+            <Route path='/' element={<Form login={login}/>}/>
 
             <Route path='*' element={<Error404/>}/>
          </Routes>        

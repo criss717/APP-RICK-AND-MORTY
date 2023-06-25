@@ -23,6 +23,9 @@ const Nav = (props) => {
                 <div className={s.div3}>
                     <button onClick={()=>props.onRandom(randomID)}>Agregar pj random</button>
                 </div> 
+                <div className={s.div4}>
+                    <button onClick={props.logOut}>↪Log Out</button>
+                </div>
             </div>            
         </div> 
      );

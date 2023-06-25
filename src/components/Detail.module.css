@@ -1,12 +1,13 @@
 .container{
-    /* background-color: rgb(33, 45, 56);     */
+    background-color: #00000030;
     display: grid;
     grid-template-columns: repeat(4,1fr); 
     grid-template-rows: repeat(4,1fr); 
     justify-items: stretch; 
     font-family: cursive;  
     gap: 10px;   
-    font-size: larger;   
+    font-size: large; 
+    border-radius: 235px;  
 }
 
 .container img{

@@ -26,12 +26,13 @@
     grid-template-columns: 100px 100px;
     text-align: center;
     justify-content: space-between;
-    background-color: rgb(170, 175, 179);
+    background-color: rgb(178 179 170 / 85%);
     font-size: small;
     width: 300px;
     height: 119px;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    border-top: solid black;
 }
 
 .div1{
