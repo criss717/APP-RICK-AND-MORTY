@@ -8,9 +8,12 @@ import About from './view/About.jsx';
 import Detail from './components/Detail.jsx';
 import Error404 from './components/Error404.jsx';
 import Form from './components/Form/Form.jsx';
+import Favorites from './components/Favorites/Favorites.jsx';
+import { connect } from 'react-redux';
+import { removeFav } from './Redux/Actions/actions.js';
 
 
-function App() {
+function App(props) {
    
    const [characters,setCharacters]= useState([])
    const [acces, setAccess]=useState(false)
@@ -36,6 +39,12 @@ function App() {
 
    const onClose=(id)=>{ //para nuestro botón X (cerrar card)
       setCharacters(characters.filter((elem)=>elem.id!==Number(id)))
+      props.removeFav(id)
+
+   }
+
+   const onCloseFav = (id)=>{ //para nuestro botón X (cerrar card de favoritos)
+      props.removeFav(id)
    }
      
    const onRandom=(randomID)=>{  //para el botón de pj random
@@ -79,10 +88,26 @@ function App() {
 
             <Route path='/' element={<Form login={login}/>}/>
 
+            <Route path='/favorites' element={<Favorites onClose={onCloseFav}/>}/>
+
             <Route path='*' element={<Error404/>}/>
          </Routes>        
       </div>
    );
 }
 
-export default App;
+function mapStateToProps(state){
+   return{
+      myFavorites:state.myFavorites
+   }
+}
+
+function mapDispatchToProps(dispatch){
+   return {     
+      removeFav:(id)=>{
+         dispatch(removeFav(id))
+      }
+   }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

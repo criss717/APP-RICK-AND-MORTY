@@ -22,9 +22,8 @@ const Form = (props) => {
     }
 
     const onSubmit=(e)=>{
-        e.preventDefault();
-       props.login(userData)
-
+        e.preventDefault();        
+        props.login(userData)
     }
 
     return ( 

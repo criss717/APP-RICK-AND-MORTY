@@ -13,7 +13,9 @@ const Nav = (props) => {
                 <Link to='/home'>
                     <button>Home</button>            
                 </Link>
-
+                <Link to='/favorites'>
+                    <button>Favorites</button>            
+                </Link>
                 <Link to='/about'>
                     <button>About</button>            
                 </Link>
@@ -21,7 +23,7 @@ const Nav = (props) => {
             <div className={s.div2}>
                 <SearchBar onSearch={props.onSearch}/>
                 <div className={s.div3}>
-                    <button onClick={()=>props.onRandom(randomID)}>Agregar pj random</button>
+                    <button onClick={()=>props.onRandom(randomID)}>Personaje random</button>
                 </div> 
                 <div className={s.div4}>
                     <button onClick={props.logOut}>↪Log Out</button>

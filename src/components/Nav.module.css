@@ -47,3 +47,10 @@
     background-color: blueviolet;
     color: aliceblue;  
 }
+
+.div1 button:focus {
+    background-color: blueviolet;
+    color: aliceblue; 
+    filter: drop-shadow(2px 8px 4px black);
+}
+
