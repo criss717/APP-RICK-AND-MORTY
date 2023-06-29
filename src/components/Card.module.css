@@ -5,8 +5,9 @@
     height: 475px;    
     border:3px aquamarine solid;
     background-color: aliceblue;
-    margin: 4px;
+    margin: 35px;
     border-radius: 25px;
+    transform: skew(-3deg,-1deg);
 }
 
 .card img{

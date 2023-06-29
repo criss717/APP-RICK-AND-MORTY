@@ -25,8 +25,7 @@ function Card(props) {
          props.removeFav(props.id)
       }
    }
-
-
+   
    return (      
       <div className={s.card}>
          <div className={s.div1}>

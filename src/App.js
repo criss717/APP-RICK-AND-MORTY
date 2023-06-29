@@ -78,7 +78,8 @@ function App(props) {
 
    return (
       <div >
-         {location.pathname!=='/' && <Nav onSearch={onSearch} onRandom={onRandom} logOut={logOut}/>}
+         {!location.pathname.includes("detail") && location.pathname!==('/') &&
+          <Nav onSearch={onSearch} onRandom={onRandom} logOut={logOut}/>}
          <Routes>
             <Route path='/home' element={<Cards onClose={onClose} characters={characters}/>}/>
             

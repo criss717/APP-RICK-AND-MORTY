@@ -3,6 +3,7 @@ import validation from "./validation";
 import s from './Form.module.css'
 
 const Form = (props) => {
+    const audioSubmit= new Audio('../../../public/audio/eres-un-monstruo.mp3')
     const [userData, setUserData]=useState({
         email:'',
         password:''
@@ -24,10 +25,25 @@ const Form = (props) => {
     const onSubmit=(e)=>{
         e.preventDefault();        
         props.login(userData)
+        let etiquetaAudio = document.createElement("audio")
+        etiquetaAudio.setAttribute("src", './eres-un-monstruo.mp3')
+        etiquetaAudio.play()
     }
 
     return ( 
         <div className={s.container}>
+            <div className={s.containerGhost}>
+                <div className={s.title}>
+                    <h1>RIK AND MORTY</h1>
+                </div>
+                <div className={s.ghost}>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
             <form className={s.form} onSubmit={onSubmit}>
                 <img src='/assets/fondoLogin.jpg' alt=""/>
                 <label htmlFor="email">EMAIL</label>

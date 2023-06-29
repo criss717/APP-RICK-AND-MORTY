@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import s from './Detail.module.css'
 
 const Detail = (props) => {
-    const params=useParams()    
+    const params=useParams()  
+    console.log(params)  
     const [character,setCharacter]=useState({})
     const navigate=useNavigate();
 
