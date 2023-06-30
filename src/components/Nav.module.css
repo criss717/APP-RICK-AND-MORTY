@@ -1,6 +1,6 @@
 .container{
     display: grid;
-    grid-template-columns: 27% auto;  
+    grid-template-columns: 32% auto;  
     height: 350px;  
 }
 
@@ -38,7 +38,7 @@
     margin-left: 15px;
 }
 .container button{
-    width: 140px;
+    width: 120px;
     height: 45px;
     border-radius: 15px;
     border: 2.5px solid black;

@@ -31,16 +31,14 @@ const Nav = (props) => {
                     <>
                     <SearchBar onSearch={props.onSearch}/>
                     <div className={s.div3}>
-                        <button onClick={()=>props.onRandom(randomID)}>Personaje random</button>
+                        <button onClick={()=>props.onRandom(randomID)}>Pj Random</button>
                     </div> 
                     <div className={s.div4}>
                         <button onClick={props.logOut}>↪Log Out</button>
                     </div>
                     </>
                 }
-            </div>            
-                
-            
+            </div>               
         </div> 
      );
 }
