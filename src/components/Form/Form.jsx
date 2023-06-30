@@ -40,6 +40,7 @@ const Form = (props) => {
                     onChange={handleChange}
                     value={userData.email}
                     className={errors.email && s.warning}
+                    placeholder="mono-717@hotmail.com"
                  />
                 <p className={s.danger}>{errors.email}</p>
 
@@ -50,6 +51,7 @@ const Form = (props) => {
                     onChange={handleChange}
                     value={userData.password}
                     className={errors.email && s.warning}
+                    placeholder="c1234567"
                  />
                 <p className={s.danger}>{errors.password}</p>
 
