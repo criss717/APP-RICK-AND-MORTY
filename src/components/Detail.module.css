@@ -8,6 +8,7 @@
     gap: 10px;   
     font-size: large; 
     border-radius: 77px;  
+    margin-bottom: 54px;
 }
 
 .container img{
@@ -40,7 +41,7 @@
     max-width: 77%;
 }
 
-.arrow {
+.arrowLeft {
     background-color: #322B2B;
     position: absolute;
     top: 0%;
@@ -50,7 +51,7 @@
     cursor: pointer;
 }
 
-.arrow span {    
+.arrowLeft span {    
     display: block;
     width: 1.5vw;
     height: 1.5vw;
@@ -61,11 +62,66 @@
     animation: animate 2s infinite;
 }
 
-.arrow span:nth-child(2) {
+.arrowLeft span:nth-child(2) {
     animation-delay: -0.2s;
 }
 
-.arrow span:nth-child(3) {
+.arrowLeft span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(20px, 20px);
+    }
+}
+
+/* mas info */
+.arrowDown {
+    background-color:#46464438;
+    position: absolute;
+    top:80%;
+    left:25%;
+    transform: translate(-50%, -50%);
+    transform: rotate(0);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: aliceblue;
+    border-radius: 50px;
+    width: 312px
+}
+
+.arrowDown:hover{
+    color: violet;
+    border: 1px solid black ;
+}
+
+.arrowDown span {    
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-bottom: 5px solid rgb(255, 255, 255);
+    border-right: 5px solid white;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+
+.arrowDown span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrowDown span:nth-child(3) {
     animation-delay: -0.4s;
 }
 

@@ -4,17 +4,20 @@ import Nav from './components/Nav.jsx'
 import './App.css'
 import axios  from 'axios';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import About from './view/About.jsx';
+import About from './components/About.jsx';
 import Detail from './components/Detail.jsx';
 import Error404 from './components/Error404.jsx';
 import Form from './components/Form/Form.jsx';
 import Favorites from './components/Favorites/Favorites.jsx';
 import { connect } from 'react-redux';
 import { removeFav } from './Redux/Actions/actions.js';
+import audioLogin from './assets/audio/login.mp3'
+import useSound from 'use-sound';
 
 
 function App(props) {
    
+   const [playAudio]=useSound(audioLogin)
    const [characters,setCharacters]= useState([])
    const [acces, setAccess]=useState(false)
    
@@ -63,12 +66,14 @@ function App(props) {
 
    const login=(userData)=>{  //SIMULA SEGURIDAD
       if(userData.email===EMAIL && userData.password===PASSWORD ){
+         playAudio()  // reproducimos sonido de portal
          setAccess(true)    
          navigate('/home') //para redirigirnos a /Home 
       }else alert('Email o contraseña incorrecta') 
    }  
 
    const logOut=()=>{
+      playAudio()  // reproducimos sonido de portal
       setAccess(false)
    }
 

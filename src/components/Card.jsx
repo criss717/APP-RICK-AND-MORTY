@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import s from './Card.module.css'
 import { addFav, removeFav } from '../Redux/Actions/actions';
 import { connect } from 'react-redux';
@@ -6,8 +6,9 @@ import { useEffect, useState } from 'react';
 
 
 function Card(props) {
-
+   const {pathname}=useLocation();
    const [isFav, setIsFav]=useState(false)
+
    useEffect(() => {
       props.myFavorites.forEach((fav) => {
          if (fav.id === props.id) {
@@ -29,10 +30,15 @@ function Card(props) {
    return (      
       <div className={s.card}>
          <div className={s.div1}>
-            <img src={props.image} alt='' />
-            <button className={s.buttonX}
-                onClick={()=>props.onClose(props.id)}
-            >X</button>
+            <Link to={`/detail/${props.id}`}>
+               <img src={props.image} alt='' />
+            </Link>
+            {
+               pathname!=='/favorites' &&
+               <button className={s.buttonX}
+                   onClick={()=>props.onClose(props.id)}
+               >X</button>
+            }
             <button className={isFav?s.btnFavTrue:s.btnFavFalse}
                 onClick={handleFavorite}
             >♥</button>

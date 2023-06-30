@@ -1,9 +1,10 @@
 import { useState } from "react";
 import validation from "./validation";
 import s from './Form.module.css'
+import image from '../../assets/gif-login-sin-fondo.gif'
 
-const Form = (props) => {
-    const audioSubmit= new Audio('../../../public/audio/eres-un-monstruo.mp3')
+const Form = (props) => { 
+   //Estados
     const [userData, setUserData]=useState({
         email:'',
         password:''
@@ -14,6 +15,7 @@ const Form = (props) => {
         password:''
     })
 
+    //Handle Events
     const handleChange=(e)=>{
         const property=e.target.name;
         const value=e.target.value;
@@ -24,28 +26,13 @@ const Form = (props) => {
 
     const onSubmit=(e)=>{
         e.preventDefault();        
-        props.login(userData)
-        let etiquetaAudio = document.createElement("audio")
-        etiquetaAudio.setAttribute("src", './eres-un-monstruo.mp3')
-        etiquetaAudio.play()
+        props.login(userData)       
     }
 
     return ( 
-        <div className={s.container}>
-            <div className={s.containerGhost}>
-                <div className={s.title}>
-                    <h1>RIK AND MORTY</h1>
-                </div>
-                <div className={s.ghost}>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-            <form className={s.form} onSubmit={onSubmit}>
-                <img src='/assets/fondoLogin.jpg' alt=""/>
+        <div className={s.container}>           
+            <img src={image}></img>
+            <form className={s.form} onSubmit={onSubmit}>              
                 <label htmlFor="email">EMAIL</label>
                 <input
                     name="email"
