@@ -89,8 +89,7 @@ const Detail = (props) => {
                     <h1>Episode Title: <br/> {episodeRandom.name}                   
                 {
                     moreInfo &&
-                    <div onClick={handleLessInfo} class={s.arrowUp}>
-                        Less Info
+                    <div onClick={handleLessInfo} class={s.arrowUp}>                        
                         <span></span>
                         <span></span>
                         <span></span>
