@@ -55,7 +55,7 @@
     border-radius: 77px; 
     padding-bottom: 25px; 
     margin-bottom: 40px;
-    height: 380px;  
+    height: 280px;  
     width: 66%;
 }
 
@@ -67,6 +67,7 @@
     grid-column: 1/2;
     color:aquamarine;
     filter: drop-shadow(2px 12px 1px black);
+    font-size: 27px;
 }
 
 .container2 h2{
@@ -140,7 +141,8 @@
     align-items: center;
     color: aliceblue;
     border-radius: 50px;
-    width: 312px
+    width: 250px;
+    font-size: 27px;
 }
 
 .arrowDown:hover{
@@ -211,19 +213,20 @@
 .btnRandom {
     position: absolute;
     top:90%;
-    left:25%;
+    left:30%;
     background-color:#46464438;
     color: violet;
-    border-radius: 50px;
-    width: 300px;
-    height: 58px;
-    font-size: xx-large;    
+    border-radius: 50px;   
+    height: 58px;       
     font-family: cursive;
     cursor: pointer;
     font-weight: bolder;
+    width: 180px;
+    font-size: 27px;
+    border: 1px solid whitesmoke
 }
 
 .btnRandom:hover{
     color:  #9c7fff;;
-    border: 1px solid black ;
+    border: 1px solid violet ;
 }
