@@ -7,6 +7,7 @@ const Detail = (props) => {
     const [character,setCharacter]=useState({})
     const [moreInfo, setMoreInfo]=useState(false)
     const [episodeRandom, setEpisodeRandom] = useState({})
+    const [randomIn,setRandomIn]= useState('')
 
     //hooks
     const params=useParams()
@@ -25,17 +26,18 @@ const Detail = (props) => {
     function randomI(){ //para calcular un indice aleatorio, que sirve para el array de episodios
         return Math.floor((Math.random()*character.episode.length))
     }
-
-    //modificaicon estado episodeRandom      
+    //modificaición estado episodeRandom       
     useEffect(()=>{
+        console.log('hola')
         if(character.episode){
-            fetch(character.episode[randomI()]) //obtenemos url del episodio escogido al azar
+            setRandomIn(randomI()) //primero seteamos un indice aleatorio en el estado
+            fetch(character.episode[randomIn]) //obtenemos url del episodio escogido al azar
                 .then((res)=>res.json())
                 .then(data=>{
                     if(data) setEpisodeRandom(data)
                 })
         }
-    },[character])    
+    },[character,randomIn])    
     
     // handle events
     const handleBack = ()=> {
@@ -43,9 +45,17 @@ const Detail = (props) => {
     }
 
     const handleMoreInfo =()=>{
-        setMoreInfo(true)
+        !moreInfo? setMoreInfo(true) : setMoreInfo(false)
     }
 
+    const handleLessInfo =()=>{
+        !moreInfo? setMoreInfo(true) : setMoreInfo(false)
+        setRandomIn('')
+    }
+
+    const handleAnother = ()=>{
+        setRandomIn('')
+    }
     if(character.name){
         return (
             <>
@@ -56,12 +66,15 @@ const Detail = (props) => {
                     <span></span>
                     <span></span>
                 </div>
-                <div onClick={handleMoreInfo} class={s.arrowDown}>
-                    Random Episode
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+                {
+                    !moreInfo &&
+                    <div onClick={handleMoreInfo} class={s.arrowDown}>
+                        Random Episode
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                }
                 </h1>
                 <h2>Status: {character.status}</h2>
                 <h2>Species: {character.species}</h2>
@@ -72,19 +85,22 @@ const Detail = (props) => {
              </div>
             {
                 moreInfo &&
-                <div className={s.container}>
-                    <h1>Episode Title: <br/> {episodeRandom.name}
-                   
-                    <div onClick={handleMoreInfo} class={s.arrowUp}>
+                <div className={s.container2}>
+                    <h1>Episode Title: <br/> {episodeRandom.name}                   
+                {
+                    moreInfo &&
+                    <div onClick={handleLessInfo} class={s.arrowUp}>
+                        Less Info
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
+                }
+                <button onClick={handleAnother} className={s.btnRandom}>Another Episode</button>    
                     </h1>
                     <h2># Episode: {episodeRandom.id}</h2>                    
                     <h2>Air Date: {episodeRandom.air_date}</h2>
-                    <h2>Code: {episodeRandom.episode}</h2>    
-
+                    <h2>Code: {episodeRandom.episode}</h2>  
                 </div>
             }
             </>

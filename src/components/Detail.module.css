@@ -7,8 +7,10 @@
     font-family: cursive;  
     gap: 10px;   
     font-size: large; 
-    border-radius: 77px;  
-    margin-bottom: 54px;
+    border-radius: 77px; 
+    padding-bottom: 25px; 
+    margin-bottom: 20px;
+  
 }
 
 .container img{
@@ -41,6 +43,42 @@
     max-width: 77%;
 }
 
+.container2{
+    background-color: #00000030;
+    display: grid;
+    grid-template-columns: repeat(2,1fr); 
+    grid-template-rows: repeat(3,1fr); 
+    justify-items: stretch; 
+    font-family: cursive;  
+    gap: 10px;   
+    font-size: large; 
+    border-radius: 77px; 
+    padding-bottom: 25px; 
+    margin-bottom: 40px;
+    height: 380px;  
+    width: 66%;
+}
+
+.container2 h1{
+    display: grid;
+    text-align: center;
+    align-items: center;
+    grid-row: 1/5;
+    grid-column: 1/2;
+    color:aquamarine;
+    filter: drop-shadow(2px 12px 1px black);
+}
+
+.container2 h2{
+    grid-column: 2/3;
+    border-bottom: solid #00ffbd;
+    margin-bottom: 11px;    
+    color: rgb(255, 255, 255);
+    text-align: center;
+    filter: drop-shadow(2px 12px 1px black);
+    max-width: 77%;
+}
+/* boton atras */
 .arrowLeft {
     background-color: #322B2B;
     position: absolute;
@@ -49,6 +87,10 @@
     transform: translate(-50%, -50%);
     transform: rotate(90deg);
     cursor: pointer;
+}
+
+.arrowLeft:hover{
+    background-color: rgba(238, 130, 238, 0.656); 
 }
 
 .arrowLeft span {    
@@ -125,16 +167,63 @@
     animation-delay: -0.4s;
 }
 
-@keyframes animate {
-    0% {
-        opacity: 0;
-        transform: rotate(45deg) translate(-20px, -20px);
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: rotate(45deg) translate(20px, 20px);
-    }
+/* menos info */
+.arrowUp {
+    background-color:#46464438;
+    position: absolute;
+    top:0%;
+    left:35%;
+    transform: translate(-50%, -50%);
+    transform: rotate(180deg);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: aliceblue;
+    border-radius: 50px;
+    width: 220px;
+}
+
+.arrowUp:hover{
+    color: violet;
+    border: 1px solid black ;
+}
+
+.arrowUp span {    
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-bottom: 5px solid rgb(255, 255, 255);
+    border-right: 5px solid white;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+
+.arrowUp span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrowDown span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+.btnRandom {
+    position: absolute;
+    top:90%;
+    left:25%;
+    background-color:#46464438;
+    color: violet;
+    border-radius: 50px;
+    width: 300px;
+    height: 58px;
+    font-size: xx-large;    
+    font-family: cursive;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.btnRandom:hover{
+    color:  #9c7fff;;
+    border: 1px solid black ;
 }
