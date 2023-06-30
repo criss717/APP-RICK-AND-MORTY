@@ -7,7 +7,7 @@ const Detail = (props) => {
     const [character, setCharacter] = useState({})
     const [moreInfo, setMoreInfo] = useState(false)
     const [episodeRandom, setEpisodeRandom] = useState({})
-    const [randomIn, setRandomIn] = useState('')
+    const [randomIn, setRandomIn] = useState(0)
 
     //hooks
     const params = useParams()
@@ -25,11 +25,10 @@ const Detail = (props) => {
     }, [params.id])  
     
     // modificación estado episodeRandom       
-    useEffect(() => {
-        console.log('hola segundo useefct')
+    useEffect(() => {        
         if(!randomIn && character.episode) setRandomIn(Math.floor((Math.random() * character.episode.length)))
         if (character.episode) {                   
-            fetch(character.episode[randomIn] ) //obtenemos url del episodio escogido al azar
+            fetch(character.episode[Number(randomIn)] ) //obtenemos url del episodio escogido al azar
             .then((res) => res.json())
             .then(data => {
                 if (data) setEpisodeRandom(data)
