@@ -2,9 +2,6 @@ import { connect, useDispatch } from "react-redux";
 import Card from "../Card";
 import s from './Favorites.module.css'
 import { filterCards, orderCards } from "../../Redux/Actions/actions";
-import { useState } from "react";
-
-
 
 const Favorites = (props) => {  
     //hooks

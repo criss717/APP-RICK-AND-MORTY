@@ -77,9 +77,9 @@ function App(props) {
       setAccess(false)
    }
 
-   useEffect(()=>{
-      !acces && navigate('/')
-   },[acces])
+   useEffect(()=>{    
+      if(!acces) navigate('/')
+   },[acces,navigate])
 
    return (
       <div >
@@ -102,12 +102,6 @@ function App(props) {
    );
 }
 
-function mapStateToProps(state){
-   return{
-      myFavorites:state.myFavorites
-   }
-}
-
 function mapDispatchToProps(dispatch){
    return {     
       removeFav:(id)=>{
@@ -116,4 +110,4 @@ function mapDispatchToProps(dispatch){
    }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(null,mapDispatchToProps)(App);

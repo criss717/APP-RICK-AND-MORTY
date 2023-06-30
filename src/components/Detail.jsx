@@ -13,7 +13,8 @@ const Detail = (props) => {
     const params = useParams()
     const navigate = useNavigate();
 
-    useEffect(() => {       
+    useEffect(() => {   
+        console.log('holas')    
         fetch(`https://rickandmortyapi.com/api/character/${params.id}`)
             .then((res) => res.json())
             .then(data => {

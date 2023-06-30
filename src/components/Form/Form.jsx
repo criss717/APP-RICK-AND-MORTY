@@ -31,7 +31,7 @@ const Form = (props) => {
 
     return ( 
         <div className={s.container}>           
-            <img src={image}></img>
+            <img src={image} alt=""></img>
             <form className={s.form} onSubmit={onSubmit}>              
                 <label htmlFor="email">EMAIL</label>
                 <input
