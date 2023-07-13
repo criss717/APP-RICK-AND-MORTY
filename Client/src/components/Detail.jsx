@@ -14,7 +14,7 @@ const Detail = (props) => {
     const navigate = useNavigate();
   
     useEffect(() => {          
-        fetch(`https://rickandmortyapi.com/api/character/${params.id}`)
+        fetch(`http://localhost:3001/rickandmorty/character/${params.id}`)
         .then((res) => res.json())
         .then(data => {
             if (data.name) {

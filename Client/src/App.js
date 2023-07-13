@@ -29,7 +29,7 @@ function App(props) {
    const onSearch=(id)=>{  //para nuestro botón e input de entrada id
       if(!id) alert('Campo requerido')
       if(characters.findIndex((elem)=>elem.id===Number(id))===-1){        
-         axios(`https://rickandmortyapi.com/api/character/${id}`)
+         axios(`http://localhost:3001/rickandmorty/character/${id}`)
          .then(({data}) => {
             if (data.name) {
                setCharacters((oldChars) => [...oldChars, data]);
