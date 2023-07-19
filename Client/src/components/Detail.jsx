@@ -59,14 +59,14 @@ const Detail = (props) => {
             <>
                 <div className={s.container}>
                     <h1>Name: <br /> {character.name}
-                        <div onClick={handleBack} class={s.arrowLeft}>
+                        <div onClick={handleBack} className={s.arrowLeft}>
                             <span></span>
                             <span></span>
                             <span></span>
                         </div>
                         {
                             !moreInfo &&
-                            <div onClick={handleMoreInfo} class={s.arrowDown}>
+                            <div onClick={handleMoreInfo} className={s.arrowDown}>
                                 Random Episode
                                 <span></span>
                                 <span></span>
@@ -87,7 +87,7 @@ const Detail = (props) => {
                         <h1>Episode Title: <br /> {episodeRandom.name}
                             {
                                 moreInfo &&
-                                <div onClick={handleLessInfo} class={s.arrowUp}>
+                                <div onClick={handleLessInfo} className={s.arrowUp}>
                                     <span></span>
                                     <span></span>
                                     <span></span>

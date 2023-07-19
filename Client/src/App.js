@@ -14,7 +14,6 @@ import { removeFav } from './Redux/Actions/actions.js';
 import audioLogin from './assets/audio/login.mp3'
 import useSound from 'use-sound';
 
-
 function App(props) {
    
    const [playAudio]=useSound(audioLogin)
@@ -43,12 +42,10 @@ function App(props) {
    const onClose=(id)=>{ //para nuestro botón X (cerrar card)
       setCharacters(characters.filter((elem)=>elem.id!==Number(id)))
       props.removeFav(id)
-
    }
 
    const onCloseFav = (id)=>{ //para nuestro botón X (cerrar card de favoritos)
-      props.removeFav(id)
-   }
+      props.removeFav(id)   }
      
    const onRandom=(randomID)=>{  //para el botón de pj random
       const idRandom=randomID();               
@@ -61,8 +58,7 @@ function App(props) {
          }else{
             alert(`El personaje con id:${idRandom} ya fue elegido`)
          }        
-      }
-   
+      }   
 
    const login=(userData)=>{  //SIMULA SEGURIDAD
       if(userData.email===EMAIL && userData.password===PASSWORD ){

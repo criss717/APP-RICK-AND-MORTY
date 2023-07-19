@@ -1,7 +1,7 @@
 const fs = require("fs");
 const http = require("http");
-const data= require('./utils/data.js');
 const { log } = require("console");
+const {getCharById}= require('./controllers/getCharById')
 
 
 const PORT = 3001;
@@ -11,12 +11,10 @@ http
         console.log(`Server raised in port ${PORT}`); 
         let {url}=req;
         
-        if(url.includes(`/rickandmorty/character`)) {           
+        if(url.includes(`/rickandmorty/character`)) {            
             url=url.split('/');
             const id=Number(url.at(-1))           
-            const [character]=data.filter((e)=>e.id===id)                     
-            res.writeHead(200, {'Content-Type':'application/json'})
-            res.end(JSON.stringify(character))
+            getCharById(res,id)            
         }
         
         // else if(url==='/allDogs') {
