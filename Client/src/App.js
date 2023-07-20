@@ -33,7 +33,7 @@ function App(props) {
             if (data.name) {
                setCharacters((oldChars) => [...oldChars, data]);
             } 
-         }).catch(err=>window.alert(err.response.data.error))
+         }).catch(({response:{data}})=>window.alert(data))
       }else{
          alert(`El personaje con id:${id} ya fue elegido`)
       }      
