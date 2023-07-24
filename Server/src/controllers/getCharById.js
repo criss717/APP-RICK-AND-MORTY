@@ -1,9 +1,11 @@
-const axios = require('axios')
+const URL='https://rickandmortyapi.com/api/character/';
+const axios=require('axios')
 
-module.exports.getCharById = (res, id) => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`)
+module.exports.getCharById = (req, res) => {
+    const {id}=req.params;
+    axios(URL+Number(id))
         .then(
-            ({ data }) => {
+            ({ data }) => {                
                 const { id, name, gender, species, origin, image, status, episode } = data //tomamos los datos(propiedades) q necesitamos con destructuring del data               
                 let character = {
                     id,
@@ -15,13 +17,11 @@ module.exports.getCharById = (res, id) => {
                     status,
                     episode
                 }
-                res.writeHead(200, { 'Content-Type': 'application/json' })
-                res.end(JSON.stringify(character))
+                if(character) return res.status(200).json(character)
+                return res.status(404).send('Not found')
             },
              (err) => {
-                // console.log(err.response.data.error)                
-                res.writeHead(500, { 'Content-Type': 'text/plain' })
-                res.end('hola soy el error')
+                res.status(500).send(err.message)
             }
         )
 
