@@ -20,8 +20,6 @@ function App(props) {
    const [characters,setCharacters]= useState([])
    const [acces, setAccess]=useState(false)
    
-   const EMAIL='mono-717@hotmail.com'
-   const PASSWORD='c1234567'
    const location=useLocation() // para ocultar navbar cuando este en el path='/'
    const navigate=useNavigate() // para re dirigir a una ruta, a /home cuando hacemos login correcto
    
@@ -59,15 +57,19 @@ function App(props) {
             alert(`El personaje con id:${idRandom} ya fue elegido`)
          }        
       }   
-
-   const login=(userData)=>{  //SIMULA SEGURIDAD
-      if(userData.email===EMAIL && userData.password===PASSWORD ){
-         playAudio()  // reproducimos sonido de portal
-         setAccess(true)    
-         navigate('/home') //para redirigirnos a /Home 
-      }else alert('Email o contraseña incorrecta') 
-   }  
-
+ 
+   function login(userData) { //simula seguridad
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         if(access){
+            playAudio(); // reproducimos sonido de portal
+            navigate('/home') //para redirigirnos a /Home 
+         } else alert('Email o contraseña incorrecta')       
+      });
+   }
    const logOut=()=>{
       playAudio()  // reproducimos sonido de portal
       setAccess(false)
