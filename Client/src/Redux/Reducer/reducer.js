@@ -1,7 +1,8 @@
-import { REMOVE_FAV, ADD_FAV, FILTER, ORDER, GET_FAV } from "../Actions/types";
+import { REMOVE_FAV, ADD_FAV, FILTER, ORDER, GET_FAV, CLEAN_DETAIL, GET_DETAIL } from "../Actions/types";
 const initialState = {
     myFavorites:[],
-    allCharacters:[]
+    allCharacters:[],
+    characterDetail:{}
 }
 
 export default function rootReducer(state=initialState,action){
@@ -44,6 +45,17 @@ export default function rootReducer(state=initialState,action){
                 ...state,               
                 myFavorites:copiaOrder
             }
+        case GET_DETAIL:
+            return{
+                ...state,
+                characterDetail:action.payload
+            }
+        case CLEAN_DETAIL:
+            return{
+                ...state,
+                characterDetail:{}
+            }   
+        
         default:
             return {
                 ...state

@@ -1,28 +1,27 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import s from './Detail.module.css'
+import { useDispatch, useSelector } from "react-redux";
+import { cleanDetail, getDetail } from "../Redux/Actions/actions";
 
 const Detail = (props) => {
-    //Estados
-    const [character, setCharacter] = useState({})
+    //Estados    
+    const character=useSelector((state=>state.characterDetail))
     const [moreInfo, setMoreInfo] = useState(false)
     const [episodeRandom, setEpisodeRandom] = useState({})
     const [randomIn, setRandomIn] = useState(0)
 
     //hooks
-    const params = useParams()
+    const {id:idDetail} = useParams()
     const navigate = useNavigate();
-  
-    useEffect(() => {          
-        fetch(`http://localhost:3001/rickandmorty/character/${params.id}`)
-        .then((res) => res.json())
-        .then(data => {
-            if (data.name) {
-                setCharacter(data)              
-            }
-        })
-        return setCharacter({})
-    }, [params.id])  
+    const dispatch = useDispatch()  
+   
+    useEffect(()=>{
+        dispatch(getDetail(idDetail)) //montain
+        return ()=>{
+            dispatch(cleanDetail()) // willdind unmontain
+        } 
+    },[idDetail])
     
     // modificación estado episodeRandom       
     useEffect(() => {        

@@ -1,24 +1,20 @@
-import { REMOVE_FAV, ADD_FAV, ORDER, FILTER,GET_FAV } from "./types";
+import { REMOVE_FAV, ADD_FAV, ORDER, FILTER,GET_FAV, GET_DETAIL, CLEAN_DETAIL } from "./types";
 import axios from 'axios'
 
 export const getFav = ()=>{
    const endpoint = 'http://localhost:3001/rickandmorty/fav';
    return async (dispatch) => {
       try {
-         const {data} = await axios.post(endpoint)
-         if(data.length>0){ // para q no guarde objetos vacios en myfavorites
-            return dispatch({
-               type: GET_FAV,
-               payload:data
-            })
-
-         }
-      } catch (error) {
+         const {data} = await axios(endpoint)
+         return dispatch({
+            type: GET_FAV,
+            payload:data
+         })
+      }catch (error) {
          alert(error.message)        
       }
-   }
-
-}
+   }  
+}   
 export const addFav =  (character) => {
     const endpoint = 'http://localhost:3001/rickandmorty/fav';
     return async (dispatch) => {
@@ -63,4 +59,23 @@ export function orderCards(orden){
         type:ORDER,
         payload: orden
     }
+}
+
+export function getDetail(id){
+   const endpoint=`http://localhost:3001/rickandmorty/character/${id}`
+   return  (dispatch)=>{
+      axios(endpoint)
+         .then(({data})=>{
+            return dispatch({
+               type:GET_DETAIL,
+               payload:data
+            })
+         })
+   }
+}
+
+export function cleanDetail(){ // para limpiar el componente global de detalle, cuando damos hacia  atrás
+   return {
+      type:CLEAN_DETAIL      
+   }
 }
