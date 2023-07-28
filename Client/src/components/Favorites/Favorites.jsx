@@ -1,11 +1,15 @@
 import { connect, useDispatch } from "react-redux";
 import Card from "../Card";
 import s from './Favorites.module.css'
-import { filterCards, orderCards } from "../../Redux/Actions/actions";
+import { filterCards, getFav, orderCards } from "../../Redux/Actions/actions";
+import { useEffect } from "react";
 
-const Favorites = (props) => {  
+const Favorites = (props) => {
     //hooks
     const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(getFav())
+    },[])
 
     //handle events
     const handleOrder = (e)=>{
@@ -33,9 +37,9 @@ const Favorites = (props) => {
             </div>
             {/* //mapeamos de la lista de favoritos */}
             <div className={s.containerCards}>
-                {   
+                {
                     props.myFavorites.map((elem)=>
-                        <Card
+                     elem.name &&  <Card
                             {...elem}
                             onClose={props.onClose}
                             key={elem.id}

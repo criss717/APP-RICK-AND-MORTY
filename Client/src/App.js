@@ -23,15 +23,15 @@ function App(props) {
    const location=useLocation() // para ocultar navbar cuando este en el path='/'
    const navigate=useNavigate() // para re dirigir a una ruta, a /home cuando hacemos login correcto
    
-   const onSearch=(id)=>{  //para nuestro botón e input de entrada id
+   const onSearch= async (id)=>{  //para nuestro botón e input de entrada id
       if(!id) alert('Campo requerido')
-      if(characters.findIndex((elem)=>elem.id===Number(id))===-1){        
-         axios(`http://localhost:3001/rickandmorty/character/${id}`)
-         .then(({data}) => {
-            if (data.name) {
-               setCharacters((oldChars) => [...oldChars, data]);
-            } 
-         }).catch(({response:{data}})=>window.alert(data))
+      else if(characters.findIndex((elem)=>elem.id===Number(id))===-1){          
+         try {
+            const {data}= await axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
+            setCharacters((oldChars) => [...oldChars, data]);                  
+         } catch (error) {                       
+            window.alert(error.response.data)
+         } 
       }else{
          alert(`El personaje con id:${id} ya fue elegido`)
       }      
@@ -58,17 +58,20 @@ function App(props) {
          }        
       }   
  
-   function login(userData) { //simula seguridad
+   async function login(userData) { //simula seguridad
       const { email, password } = userData;
       const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-         const { access } = data;
+      try {
+         const {data} = await axios(URL + `?email=${email}&password=${password}`)
+         const {access} = data;
          setAccess(data);
          if(access){
             playAudio(); // reproducimos sonido de portal
             navigate('/home') //para redirigirnos a /Home 
-         } else alert('Email o contraseña incorrecta')       
-      });
+         }             
+      } catch ({response}) {         
+         alert(response.data.message) // traemos el mensaje q enviamos en el archivo del server login.js
+      }      
    }
    const logOut=()=>{
       playAudio()  // reproducimos sonido de portal

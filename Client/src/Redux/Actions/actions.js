@@ -1,27 +1,53 @@
-import { REMOVE_FAV, ADD_FAV, ORDER, FILTER } from "./types";
+import { REMOVE_FAV, ADD_FAV, ORDER, FILTER,GET_FAV } from "./types";
 import axios from 'axios'
 
-export const addFav = (character) => {
+export const getFav = ()=>{
+   const endpoint = 'http://localhost:3001/rickandmorty/fav';
+   return async (dispatch) => {
+      try {
+         const {data} = await axios.post(endpoint)
+         if(data.length>0){ // para q no guarde objetos vacios en myfavorites
+            return dispatch({
+               type: GET_FAV,
+               payload:data
+            })
+
+         }
+      } catch (error) {
+         alert(error.message)        
+      }
+   }
+
+}
+export const addFav =  (character) => {
     const endpoint = 'http://localhost:3001/rickandmorty/fav';
-    return (dispatch) => {
-       axios.post(endpoint, character).then(({ data }) => {
-          return dispatch({
-             type: ADD_FAV,
-             payload: data,
-          });
-       });
+    return async (dispatch) => {
+      try {
+         const {data} = await axios.post(endpoint, character)
+         return dispatch({
+            type: ADD_FAV,
+            payload: data,
+         });
+      }  
+      catch (error) {
+         alert(error.message)
+      }
     };
- }; 
+}
 
  export const removeFav = (id) => {
     const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
-    return (dispatch) => {
-       axios.delete(endpoint).then(({ data }) => {
-          return dispatch({
-             type: REMOVE_FAV,
-             payload: data,
-       });
-       });
+    return async (dispatch) => {
+      try {
+         const {data} = await axios.delete(endpoint)
+         return dispatch({
+            type: REMOVE_FAV,
+            payload: data,
+         });      
+      } 
+      catch (error) {
+         alert(error.message)
+      }
     };
  };
 
