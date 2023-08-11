@@ -1,7 +1,8 @@
 const express= require('express');
 const server = express();
 const PORT=3001;
-const router=require('./routes/index')
+const router=require('./routes/index');
+const { conn } = require('./DB_connection');
 
 //Midlewares
 server.use((req, res, next) => {
@@ -20,6 +21,8 @@ server.use((req, res, next) => {
  server.use(express.json()) // convierte lo JSON en obj de js
  server.use('/rickandmorty',router)  //agrega este string a cada ruta
 
- server.listen(PORT, ()=>{
+ conn.sync({force:false}) // sincronizacion con BD
+   .then(server.listen(PORT, ()=>{
     console.log('Server raised in port: '+ PORT)
-})
+   })
+   ).catch((err)=>console.log(err))
