@@ -8,14 +8,16 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_DEPLOY } = process.env;
 // A la instancia de Sequelize le falta la URL de conexión. ¡Agrégala!
 // Recuerda pasarle la información de tu archivo '.env'.
 
-// URL ----> postgres://DB_USER:DB_PASSWORD@DB_HOST/rickandmorty
-const sequelize = new Sequelize(
-   // URL
-   // `${DB_USER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:5432/rickandmorty`,  
-   DB_DEPLOY,
-   { logging: false, native: false }
-);
 
+// const sequelize = new Sequelize( //para uso local
+//    // URL
+//     `${DB_USER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:5432/rickandmorty`,     
+//    { logging: false, native: false }
+// );
+const sequelize = new Sequelize(DB_DEPLOY, {  // para producción
+   logging: false, 
+   native: false 
+});
 // EJERCICIO 05
 // Debajo de este comentario puedes ejecutar la función de los modelos.
 userModel(sequelize)
